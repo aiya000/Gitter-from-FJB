@@ -2,7 +2,7 @@ Gitter from FJB
 =========
 
 * author
-  - @aiya000
+  - @aiya\_000
   - @kuzugunshi
 
 since: 2014-02-XX
