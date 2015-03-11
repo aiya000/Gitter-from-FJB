@@ -1,0 +1,7 @@
+UserSearchSQL_Helper.phpはユーザーの検索及びユーザーのフォロー機能を持つデータベースユーティリティです。
+
+following.phpは実質的なユーザーのフォロー機能を有します。
+	フォローボタンが押下された時に呼び出されます。
+
+index.htmlは検索ページのトップページです。
+	../index.html(/UserHome/index.html)から検索ワードを受け取ります。

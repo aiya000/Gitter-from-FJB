@@ -1,0 +1,14 @@
+UserHomeSQL_Helper.phpはツイートのフェッチ、ポストに最適化されたMySQL-PHP用ユーティリティです。
+	コンストラクタではユーザーIDを受け付けます。これはツイートのフェッチ、ポストに使用されます。
+	各phpファイルから参照されます。
+
+index.htmlはトップページであり、ツイートテキストエリアの名前管理及びdeliver.jsとのやり取りが役割です。
+
+deliver.jsはAjaxによる動的ページの描画が目的です。
+	index.htmlから受け付けた情報をpostTweet.php及び
+	fetchTweet.phpに受け渡すのが主要な役割です。
+	ツイート文字列の整形やページの描画もここで行われます。
+
+fetchTweet.phpではdeliver.jsから渡されたユーザーIDのツイートをフェッチして返します。
+
+postTweet.phpではdeliver.jsから渡された文字列をツイートします。

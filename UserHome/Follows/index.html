@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<?php require_once("../../MySQL_Helper.php"); ?>
+<script language="php">
+	/* 自ユーザーモードか他ユーザーモードか分岐 */
+	$userID;
+	if(isset($_GET["userID"])){
+		$userID = $_GET["userID"];
+	}else{
+		session_start();
+		$userID = $_SESSION["userID"];
+	}
+
+	//フォロワー表示モードかフォロー済みユーザー表示モードを指定される
+	$mode = $_GET["mode"];
+
+	//DBヘルパーを取得
+	$dbHelper = new MySQL_Helper($userID);
+</script>
+	<link rel="stylesheet" type="text/css" href="../../default.css">
+	<link rel="stylesheet" type="text/css" href="./follow.css">
+	<link rel="stylesheet" type="text/css" href="../userhome.css">
+	<title>Follower - Gitter</title>
+</head>
+
+
+<body>
+<?php include_once '../../header.dat' ?>
+
+<script language="php">
+	/* フォロワーモードかフォロー済みユーザーモードに分岐 */
+	$followerArray;
+	if($mode === "follow"){
+		$followerArray = $dbHelper->fetchFollowsID();
+	}else if($mode === "follower"){
+		$followerArray = $dbHelper->fetchFollowersID();
+	}else{
+		// 改行コードを定数に変更:20130828:Kuzugunshi
+		echo "undefined select mode:", PHP_EOL, 
+				"allow only follow mode or follower mode.";
+	}
+
+	// フォロワー画面(フォロー済みユーザー画面)を表示
+	for($i=0; $i<count($followerArray); $i++){
+		/* 取得したフォロワー(フォロー済みユーザー)から一連のパーツを生成、表示 */
+		$followerID = $followerArray[$i];
+		$followerHandleName = $dbHelper->getHandleName($followerArray[$i]);
+
+		// ユーザーページ表示ボタン、ユーザーフォローボタンを生成
+		// ユーザーページはアドレスのみ生成し、アンカータグで利用する: 20130828:Kuzugunshi
+		$followerPageAddress = "../index.html?userID=${followerID}";
+
+		$followerFollowLink;
+		if ($dbHelper->isFollowed($followerID)) {
+			$followerFollowLink = '<input class="followBtn" type="button" value="フォロー済み">';
+		} else {
+			$followerFollowLink = 
+					sprintf(
+						'<form class="userForm" action="./following.php?userID=%s&followID=%s&currentMode=%s" method="POST">'.
+						'	<input class="followBtn" type="submit" value="フォローする">'.
+						'</form>'
+					, $userID, $followerID, $mode);
+		}
+</script>
+
+	<div class="record">
+		<a href="<?php echo $followerPageAddress ?>"><!--
+		--><span class="userId"><!--
+		--><?php echo "@".$followerArray[$i] ?><!--
+		--></span><!--
+
+		--><span class="userName"><!--
+		--><?php echo $followerHandleName ?><!--
+		--></span>
+		</a>
+
+		<span class="userLink">
+		<?php echo $followerFollowLink ?>
+		</span>
+	</div>
+
+<script language="php">
+	}
+</script>
+
+<?php include_once '../../footer.dat'; ?>
+</body>
+</html>
+

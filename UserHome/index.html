@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- Copylight (aiya000|kuzugunshi) this comment is deletable -->
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="deliver.js"></script>
+	<link rel="stylesheet" type="text/css" href="../default.css">
+	<link rel="stylesheet" type="text/css" href="./userhome.css">
+	<?php require_once("../MySQL_Helper.php"); ?>
+	<title>Gitter</title>
+
+	<!-- DBヘルパーのインスタンス生成 -->
+	<script language="php">
+		/* 自ユーザーモードか他ユーザーモードかにページ表示を分岐 */
+		$userID;
+		/* ユーザーホームモードかタイムラインモードかに分岐(0|1) */
+		$twModeFlag;
+		if(isset($_GET["userID"])){ //URLからユーザーIDが渡されていれば他ユーザーモード
+			$userID = $_GET["userID"];
+			$twModeFlag = 0;
+		}else{
+			session_start();
+			$userID = $_SESSION["userID"];
+			$twModeFlag = 1;
+		}
+
+		//このページの表示をuserID用に設定
+		$dbHeleper = new MySQL_Helper($userID);
+	</script>
+
+	<!-- JavaScript側のユーザーIDを設定 -->
+	<script>
+		var userID = <?php echo "\"".$userID."\""; ?>;
+		var twModeFlag = <?php echo $twModeFlag; ?>
+	</script>
+
+	<!-- sleepメソッド -->
+	<script>
+	function sleep(time){
+		var slept = (new Date().getTime()) + (1000*time);
+		var now = new Date().getTime();
+		while(slept > now){
+			now = new Date().getTime();
+		}
+	}
+	</script>
+
+</head>
+
+
+<body onload="load(userID, twModeFlag)"><!-- ツイートを表示するために読み込み -->
+<?php include_once '../header.dat' ?>
+
+<section>
+<fieldset>
+<legend>
+<!-- ユーザー名、表示名を表示 -->
+<script language="php">
+	$view_name = $dbHeleper->getHandleName() . '<span style="font-size: 0.7em;">:' . $userID . '</span>';
+	print($view_name);
+</script>
+</legend>
+<!-- ユーザーツイートエリア -->
+<form name="tweetHome">
+	<!--TODO: My/index.html->他ユーザーモードの場合はヒント「○○さんへのツイート」を表示-->
+	<!--TODO: Ctrl+Enterでツイートできるように -->
+	<textarea id="detail" name="detail" rows="3" cols="30" onclick="this.select()" placeholder="ほざきたいことを"></textarea>
+	<!--TODO: My/index.html->他ユーザーモードの場合は「@○○」付きでリプライテーブルへツイート-->
+	<input type="button" id="Post" name="Post" value="ツイート" onclick="post(); sleep(0.01); load(userID, twModeFlag);"/><!--
+	--><input type="button" id="Refresh" name="Refresh" value="更新" onclick="load(userID, twModeFlag)"/><!--
+	--><a href="./Follows/index.html?mode=follow"><input type="button" id="Follow" name="Follow" value="フォロー" onclick="location.href='./Follows/index.html?mode=follow'"></a><!--
+	--><a href="./Follows/index.html?mode=follower"><input type="button" id="Follower" name="Follower" value="フォロワー" onclick="location.href='./Follows/index.html?mode=follower'"></a> <!--
+	--><input id="replyHome" name="replyHome" type="button" value="リプライ" onclick="location.href='../ReplyHome/'"><!--
+	--><input id="DrawConfirm" name="DrawConfirm" type="button" value="退会する" onclick="withdrawConfirm()"><br>
+</form>
+</fieldset>
+</section>
+
+<section>
+<div class="tweetSection">
+	<span id="tweetArea"></span>
+	<!--**********************-->
+</div>
+</section>
+
+<?php include_once '../footer.dat'; ?>
+</body>
+</html>
+

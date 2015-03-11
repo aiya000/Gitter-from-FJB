@@ -1,0 +1,32 @@
+/* ------------ */
+/*  Search CSS  */
+/* ------------ */
+
+div.record
+{
+	background-image: url("/img/record.png");
+	background-repeat: repeat;
+	margin: 2px;
+	padding: 2px;
+}
+
+span.userId
+{
+	font-size: 0.8em;
+}
+
+span.userName
+{
+}
+
+form.userForm
+{
+	display: inline;
+}
+
+input.followBtn
+{
+	padding: 2px 6px;
+	font-size: 0.9em;
+}
+

@@ -1,0 +1,14 @@
+<header>
+<div id="Header">
+	<h1><a id="Home" href="/UserHome/">Gitter</a></h1>
+	<!-- ユーザー検索機能 -->
+	<form id="Search" name="Search" action="/UserHome/UserSearch/index.html" method="POST">
+		<input id="word" name="word" type="text" size="25" maxlength="20" placeholder="検索ワード：ユーザー名など">
+		<input id="SearchBtn" name="SearchBtn" type="submit" value="検索">
+	</form>
+	<form id="Logout" name="Logout" action="/UserHome/logout.php" method="POST">
+		<input id="LogoutBtn" name="LogoutBtn" type="submit" value="ログアウト">
+	</form>
+</div>
+</header>
+

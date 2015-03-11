@@ -1,0 +1,80 @@
+/* ------------- */
+/*	Default CSS  */
+/* ------------- */
+
+*
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+html
+{
+	overflow-y: scroll;
+}
+
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+body
+{
+	background-color: #ffffff;
+	font-family: Verdana, "Courier New", Osaka, "MS PGothic", sans-serif;
+	font-size: 100%;
+	line-heigth: 140%;
+}
+html>/**/body
+{
+	font-size: 16px;
+}
+* + html body
+{
+	font-family: "メイリオ", "Meiryo";
+}
+
+div#Header
+{
+	background-color: #cf9f5f;
+	color: #ffcfaf;
+}
+
+h1
+{
+	display: inline;
+	padding-left: 0.5em;
+}
+
+a#Home
+{
+	text-decoration: none;
+	color: #ffcfaf;
+}
+
+div#PageStyle
+{
+	position: relative;
+	width: 100%;
+}
+
+div#Footer
+{
+	width: 100%;
+	clear: both;
+	position: fixed;
+	bottom: 0px;
+	border-style: solid;
+	border-width: 1px 0px 0px 0px;
+	border-color: #cf9f5f;
+}
+
+p#Copyright
+{
+	width: 100%;
+	background-color: #ffffff;
+	text-align: right;
+	font-size: 0.8em;
+	color: #cf9f5f;
+}

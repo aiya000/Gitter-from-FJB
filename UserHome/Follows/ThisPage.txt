@@ -1,0 +1,8 @@
+
+FollowsSQL_Helper.phpはフォロー済みユーザーの情報を抽出するのに特化したデータベースユーティリティです。
+	fetch_FollowedUsers.phpに参照されます。
+
+index.htmlはフォロ済みユーザー情報を表示するページです。
+	ユーザーホームのindex.htmlからリンクされています。
+
+following.phpは実質的なユーザーのフォロー機能を有します。

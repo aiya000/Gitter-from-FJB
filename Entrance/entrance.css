@@ -1,0 +1,61 @@
+/* ----------- */
+/*  Login CSS  */
+/* ----------- */
+
+body
+{
+	background-image: url("./background.jpg");
+	background-repeat: no-repeat;
+}
+
+fieldset
+{
+	width: 300px;
+	float: right;
+	clear: both;
+	margin-right: 1em;
+	margin-bottom: 1em;
+	padding: 8px;
+	background-color: #ffefcf;
+	color: #7f5f3f;
+	text-align: left;
+	border-style: solid;
+	border-color: #cf9f5f;
+	border-radius: 16px;
+}
+
+legend
+{
+	width: 6em;
+	padding: 6px;
+	background-color: #cf9f5f;
+	color: #ffffff;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 6px;
+}
+
+label
+{
+	display: block;
+	float: left;
+	width: 6em;
+	color: #7f5f3f;
+	font-size: 0.9em;
+}
+
+input#UserID, input#Password, input#RegistEmail, input#RegistUserID, input#HandleName, input#RegistPassword
+{
+	font-size: 0.9em;
+	border-style: solid;
+	border-color: #cf9f5f;
+	border-width: 1px;
+}
+
+input#LoginButton, input#RegistButton
+{
+	margin-left: 4px;
+	padding: 2px 12px;
+}
+

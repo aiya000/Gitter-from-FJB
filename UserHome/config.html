@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="deliver.js"></script>
+	<link rel="stylesheet" type="text/css" href="../default.css">
+	<?php require_once("UserHomeSQL_Helper.php"); ?>
+	<title>UserConfig - Gitter</title>
+
+	<!-- DBヘルパーのインスタンス生成 -->
+	<script language="php">
+		/* 自ユーザーモードか他ユーザーモードかにページ表示を分岐 */
+		$userID;
+		/* ユーザーホームモードかタイムラインモードかに分岐(0|1) */
+		$twModeFlag;
+		if(isset($_GET["userID"])){ //URLからユーザーIDが渡されていれば他ユーザーモード
+			$userID = $_GET["userID"];
+			$twModeFlag = 0;
+		}else{
+			session_start();
+			$userID = $_SESSION["userID"];
+			$twModeFlag = 1;
+		}
+
+		//このページの表示をuserID用に設定
+		$dbHeleper = new UserHomeSQL_Helper($userID);
+	</script>
+
+	<!-- JavaScript側のユーザーIDを設定 -->
+	<script>
+		var userID = <?php echo "\"".$userID."\""; ?>;
+		var twModeFlag = <?php echo $twModeFlag; ?>
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo $userID . '.css' ?>">
+
+</head>
+
+
+<body onload="load(userID, twModeFlag)"><!-- ツイートを表示するために読み込み -->
+<?php include_once '../header.dat' ?>
+
+<section>
+<fieldset>
+<legend>
+<!-- ユーザー名、表示名を表示 -->
+<script language="php">
+	$view_name = $dbHeleper->getHandleName() . '<span style="font-size: 0.7em;">:' . $userID . '</span>';
+	print($view_name);
+</script>
+</legend>
+<form id="HomeConfig" name="HomeConfig">
+	<input type="hidden" id="UserConfigFile" name="UserConfigFile" value="<?php echo $userID . '.css' ?>">
+	<fieldset>
+	<legend>背景</legend>
+	ベースカラー：<input type="text" placeholder="#"><br>
+	
+	背景画像：<input type="file">
+	</fieldset>
+</form>
+</fieldset>
+</section>
+
+<?php include_once '../footer.dat'; ?>
+</body>
+</html>
+

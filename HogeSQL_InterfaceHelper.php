@@ -1,0 +1,27 @@
+
+	public function __construct($userID, $debugFlag=false);
+	protected function connect_mysql();
+	protected function connect_db($link);
+	protected function close($link);
+	public function setEncoding($enc);
+	public function measureInjection($string);
+	public static function setDebug($debugFlag);
+	protected static function connect_mysql();
+	protected static function connect_db($link);
+	protected static function close($link);
+	public static function setEncoding($enc);
+	public static function measureInjection($detail);
+	public function getHandleName();
+	public function postTweet($detail);
+	public function followingUser($userID);
+	public function isFollowed($userID);
+	public static function loginAccount($userID, $password);
+	public static function registAccount($userID, $password, $mailAddress ,$handleName);
+	public function withdrawingUser();
+	public function getSearchedUser($word);
+	public function handleNameToUserID($handleName);
+	public function fetchTweet();
+	public function fetchReplyTweet();
+	public function fetchTimeline();
+	public function fetchFollowersID();
+	public function fetchFollowsID();

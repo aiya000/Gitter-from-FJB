@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="deliver.js"></script>
+	<link rel="stylesheet" type="text/css" href="../default.css">
+	<link rel="stylesheet" type="text/css" href="./userhome.css">
+	<?php require_once("../MySQL_Helper.php"); ?>
+	<title>Gitter</title>
+
+	<!-- DBヘルパーのインスタンス生成 -->
+	<script language="php">
+		/* 自ユーザーモードか他ユーザーモードかにページ表示を分岐 */
+		session_start();
+		$userID = $_SESSION["userID"];
+
+		//このページの表示をuserID用に設定
+		$dbHeleper = new MySQL_Helper($userID);
+	</script>
+
+	<!-- JavaScript側のユーザーIDを設定 -->
+	<script>
+		//var userID = <?php echo "\"".$userID."\""; ?>;
+	</script>
+
+</head>
+
+
+<body onload="load()"><!-- ツイートを表示するために読み込み -->
+<?php include_once '../header.dat' ?>
+
+<section>
+<fieldset>
+<legend>
+<!-- ユーザー名、表示名を表示 -->
+<script language="php">
+	$view_name = $dbHeleper->getHandleName() . '<span style="font-size: 0.7em;">:' . $userID . '</span>';
+	print($view_name);
+</script>
+</legend>
+</fieldset>
+</section>
+
+<section>
+<div class="tweetSection">
+	<span id="tweetArea"></span>
+	<!--**********************-->
+</div>
+</section>
+
+<?php include_once '../footer.dat'; ?>
+</body>
+</html>
+

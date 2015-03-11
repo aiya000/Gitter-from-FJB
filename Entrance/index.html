@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="./deliver.js"></script>
+	<noscript>
+	<p>このページではJavaScriptを使用しています。</p>
+	</noscript>
+	<link rel="stylesheet" type="text/css" href="../default.css">
+	<link rel="stylesheet" type="text/css" href="./entrance.css">
+	<title>Login - Gitter</title>
+</head>
+<body>
+<header>
+<div id="Header">
+	<h1>Gitter</h1>
+</div>
+</header>
+
+<div id="PageStyle">
+<section id="LoginField">
+<fieldset>
+<legend>ログイン</legend>
+<form id="Login" name="Login" action="./Login/login.php" method="POST">
+	<label for="UserID">ユーザーID</label>
+	<input type="text" id="UserID" name="UserID" size="25" maxlength="20" placeholder="ユーザーID"><br>
+
+	<label for="Password">パスワード</label>
+	<input type="password" id="Password" name="Password" size="13" maxlength="16" placeholder="パスワード">
+	<input type="submit" id="LoginButton" name="LoginButton" value="ログイン">
+</form>
+</fieldset>
+</section>
+
+<section id="RegistField">
+<fieldset>
+<legend>新規登録</legend>
+<form id="Register" name="Register" action="./Regist/regist.php" method="POST">
+	<label for="RegistEmail">e-Mail</label>
+	<input type="text" id="RegistEmail" name="RegistEmail" size="25" maxlength="50" placeholder="メールアドレス"><br>
+
+	<label for="RegistUserID">ユーザーID</label>
+	<input type="text" id="RegistUserID" name="RegistUserID" size="25" maxlength="20" placeholder="ユーザーID"><br>
+
+	<label for="HandleName">ユーザー名</label>
+	<input type="text" id="HandleName" name="RegistHandleName" size="25" maxlength="30" placeholder="ハンドルネーム"><br>
+
+	<label for="RegistPassword">パスワード</label>
+	<input type="password" id="RegistPassword" name="RegistPassword" size="13" maxlength="16" placeholder="パスワード">
+	<input type="submit" id="RegistButton" name="RegistButton" value="新規登録">
+</form>
+</fieldset>
+</section>
+</div>
+
+
+<?php include_once '../footer.dat'; ?>
+</body>
+</html>
+

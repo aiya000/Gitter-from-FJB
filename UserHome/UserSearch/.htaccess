@@ -1,0 +1,3 @@
+DirectoryIndex index.html
+AddType application/x-httpd-php .php .htm .html
+php_value short_open_tag "Off"

@@ -1,0 +1,107 @@
+/* --------------- */
+/*  User home CSS  */
+/* --------------- */
+
+body
+{
+	background-image: url("./ritsuko.jpg");
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-attachment: fixed;
+}
+
+form#Search
+{
+	display: inline;
+	float: right;
+	padding: 6px 8px 0px 0px;
+}
+
+input#word,input#SearchBtn
+{
+	padding: 2px;
+	font-size: 14px;
+}
+
+
+fieldset
+{
+	background-image: url("/img/record.png");
+	background-repeat: repeat;
+	width: 320px;
+	margin-left: 1em;
+	padding-bottom: 1em;
+	color: #7f5f3f;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #9f7f5f;
+	border-radius: 12px;
+}
+
+legend
+{
+	margin: 0px 1em;
+	border-width: 1px;
+	border-color: #9f7f5f;
+}
+
+textarea#detail
+{
+	margin: 0px 1em;
+	border-style: solid;
+	border-color: #777777;
+	border-width: 1px;
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 0.9em;
+	line-height: 1.2em;
+}
+
+input#Post, input#Refresh, input#Follow, input#Follower, input#DrawConfirm
+{
+	margin-left: 0.5em;
+	font-size: 0.9em;
+}
+
+/* 発言領域のスタイル */
+div.tweetSection
+{
+	clear: both;
+	margin-left: 1em;
+	padding: 1em;
+	width: 320px;
+	font-size: 0.9em;
+}
+
+div.tweet
+{
+	width: 100%;
+	padding: 8px;
+	background-image: url("/img/record.png");
+	background-repeat: repeat;
+	border-radius: 8px;
+}
+
+/* 発言内容 */
+div.detail
+{
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+
+/* 発言時間 */
+div.time
+{
+	font-size: 0.7em;
+	color: #555555;
+}
+
+/* 発言毎の区切り */
+hr
+{
+	margin: 4px 0px;
+	border-style: solid;
+	border-color: #7f5f3f;
+	border-width: 1px 0px 0px 0px;
+}
+

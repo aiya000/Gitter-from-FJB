@@ -1,0 +1,2 @@
+RedirectMatch 303 (^/$) http://172.16.100.130/Entrance/index.html
+

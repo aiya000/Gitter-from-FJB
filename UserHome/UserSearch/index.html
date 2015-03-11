@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<?php require_once("../../MySQL_Helper.php"); ?>
+<script language="php">
+	//自ユーザーID、dbHelperを取得
+	session_start();
+	$userID = $_SESSION["userID"];
+	$dbHelper = new MySQL_Helper($userID);
+
+	//検索ワードに合致するユーザー表示名を取得、following.phpからのリンクの場合は$_GETから取得
+	// 以下の$_POST["word"]と$_GET["word"]は$postWordに変更:20130828:Kuzugunshi
+	$postWord = isset($_POST["word"]) ? $_POST["word"] : $_GET["word"];
+	$postWord = htmlspecialchars($postWord);
+	// TODO: DBに投げる前に文字チェックもう少しする
+
+	$handleNameArray = $dbHelper->getSearchedUser($postWord);
+
+</script>
+	<link rel="stylesheet" type="text/css" href="../../default.css">
+	<link rel="stylesheet" type="text/css" href="./search.css">
+	<link rel="stylesheet" type="text/css" href="../userhome.css">
+	<title>Search - Gitter</title>
+</head>
+
+
+<body>
+<?php include_once '../../header.dat' ?>
+
+<script language="php">
+	//フォロワー画面(フォロー済みユーザー画面)を表示
+	for($i=0; $i<count($handleNameArray); $i++){
+		/* 取得したフォロワー(フォロー済みユーザー)から一連のパーツを生成、表示 */
+		$foundUserHandleName = $handleNameArray[$i];
+		$foundUserID = $dbHelper->handleNameToUserID($handleNameArray[$i]);
+
+		//ユーザーページ表示ボタン、ユーザーフォローボタンを生成
+		$userPageAddress = "../index.html?userID=${foundUserID}";
+
+		$userFollowLink;
+		if($dbHelper->isFollowed($foundUserID)){
+			$userFollowLink = '<input class="followBtn" type="button" value="フォロー済み">';
+		} else {
+			$userFollowLink = 
+					sprintf(
+						'<form class="userForm" action="./following.php?userID=%s&followID=%s&currentWord=%s" method="POST">'.
+						'<input class="followBtn" type="submit" value="フォローする">'.
+						'</form>'
+					, $userID, $foundUserID, $postWord);
+		}
+</script>
+
+	<div class="record">
+		<a href="<?php echo $userPageAddress ?>">
+		<span class="userName"><!--
+		--><?php echo $foundUserHandleName ?><!--
+		--></span><!--
+
+		--><span class="userId"><!--
+		--><?php echo "@".$foundUserID ?><!--
+		--></span>
+		</a>
+
+		<span class="userLink">
+		<?php echo $userFollowLink ?>
+		</span>
+	</div>
+
+<script language="php">
+	}
+</script>
+
+<?php include_once '../../footer.dat'; ?>
+</body>
+</html>

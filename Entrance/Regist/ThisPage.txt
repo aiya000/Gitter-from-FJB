@@ -1,0 +1,13 @@
+
+TODO: index.htmlアクセス時にセッションが保持されているならばユーザーホームあたりへ飛ばす
+TODO: regist.phpの登録確認やメールアドレス認証。
+
+RegisterSQL_Helper.phpはユーザー登録に特化したデータベースユーティリティです。
+	通常はMySQL_Helper::registAccountメソッドにしか使われません。
+
+index.htmlはトップページです。
+	入力された情報をregist.phpに受け渡します。
+
+regist.phpは受け渡された情報をMySQL_Helperを用いてデータベースに登録します。
+	またその際にユーザーIDとパスワードをセッションに登録します。
+	この値はユーザーホームへのログインに使われます。
